@@ -39,13 +39,13 @@ module.exports = function (app, passport) {
 
     app.route('/api/:id')
         .get(isLoggedIn, function(req,res) {
-            res.json(req.uesr.github);
+            res.json(req.user.github);
         });
     
     app.route('/auth/github')
         .get(passport.authenticate('github'));
     
-    app.route('auth/github/callback')
+    app.route('/auth/github/callback')
         .get(passport.authenticate('github', {
             successRedirect: '/',
             failureRedirect: '/login'
